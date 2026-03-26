@@ -1,0 +1,28 @@
+version: "3"
+services:
+  ##Construimos la imagen de la aplicación a partir del Dockerfile ubicado en el directorio app.
+  app:
+    build: .
+    ##Exponemos el puerto 80 del contenedor al puerto 8080 de la máquina host para acceder a la aplicación desde el navegador.
+    ports:
+      - "8080:80"
+    ##Indicamos que el servicio de la aplicación depende del servicio de la base de datos para asegurarnos de que la base de datos esté disponible antes de iniciar la aplicación.
+    depends_on:
+      - db
+  ##Usamos la imagen  oficial de MySQL 8.0 para el servicio de la base de datos.
+  db:
+    image: mysql:8.0
+    ###Definimos las variables de entorno necesarias para configurar la base de datos, como la contraseña del usuario root, el nombre de la base de datos, el nombre de usuario y la contraseña para acceder a la base de datos.
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    ##Agregamos un volumen para persistir los datos de la base de datos, asegurándonos de que los datos no se pierdan cuando el contenedor se detenga o se elimine.
+    volumes:
+      - db_data:/var/lib/mysql
+##Añadimos un volumen para persistir los datos de la base de datos, asegurándonos de que los datos no se pierdan cuando el contenedor se detenga o se elimine.
+volumes:
+  db_data:
