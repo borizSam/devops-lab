@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-##Definimos un trabajo llamado "build" que se ejecutará en un entorno de Ubuntu. Este trabajo consta de varios pasos, incluyendo la clonación del repositorio, la construcción de la imagen Docker de la aplicación y la ejecución de un test básico para verificar que la imagen se ha construido correctamente.
+    ##Definimos un trabajo llamado "build" que se ejecutará en un entorno de Ubuntu. Este trabajo consta de varios pasos, incluyendo la clonación del repositorio, la construcción de la imagen Docker de la aplicación y la ejecución de un test básico para verificar que la imagen se ha construido correctamente.
 jobs:
   build:
     runs-on: ubuntu-latest
